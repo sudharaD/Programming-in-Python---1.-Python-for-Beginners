@@ -29,8 +29,8 @@ num_input = input('Enter a number: ')
 try:
     num_value = int(num_input)
 
-except NameError as ne:
-    num_value = float(num_input)
+# except NameError as ne:               we can use any number of exception to a single try
+#     num_value = float(num_input)
 
 except:
     num_value = -1
