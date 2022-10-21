@@ -75,5 +75,5 @@ print(factorial(5))
 def greet(name, msg):
     print("Hello", name + ', ' + msg) 
 
-greet("Jane")
+greet("Jane", "Good Morning!")
 
