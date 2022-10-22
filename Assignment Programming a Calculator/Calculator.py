@@ -39,28 +39,48 @@ def select_op(choice):
         else:
             
             # validate input only numbers
-            def validate_only_intrger(number):
+            def validate_only_integer(number):
                 try:
-                    number = float(number)
+                    return float(number)
                 except ValueError:
-                    print(number, "not an integer!")
-                    return 1
+                    return "not an integer!"
             
-            first_number = float(input("Enter first number: "))
-            validate_only_intrger(first_number)
-            print(int(first_number))
-            second_number = float(input("Enter second number: "))
-            validate_only_intrger(second_number)
-            print(int(second_number))
+            # validate "$" character
+            def reset_character_validate(number):
+                if "$" in number:
+                    return "reset"
+            
+            first_number = input("Enter first number: ")
+            print(first_number)
+            if reset_character_validate(first_number) == "reset":
+                return 1
 
-            result = calculation(choice, first_number, second_number)
+            validated_first_number = validate_only_integer(first_number)
+            if validated_first_number == "not an integer!":
+                print("not an integer!")
+                return 1
+            else:
+                # print(int(validated_first_number))
+                second_number = input("Enter second number: ")
+                print(second_number)
+                if reset_character_validate(second_number) == "reset":
+                    return 1
+
+                validated_second_number = validate_only_integer(second_number)
+                if validated_second_number == "not an integer!":
+                    print("not an integer!")
+                    return 1
+                # else:
+                #     print(int(validated_second_number))
+
+            result = calculation(choice, validated_first_number, validated_second_number)
 
             if result == "Unrecognized operation":
                 print(result)
             elif result == "Something Went Wrong":
                 print(result)
             else:
-                print(first_number, choice, second_number, "=", result)
+                print(validated_first_number, choice, validated_second_number, "=", result)
 
 while True:
     print("Select operation.")
