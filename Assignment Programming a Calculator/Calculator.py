@@ -49,9 +49,16 @@ def select_op(choice):
             def reset_character_validate(number):
                 if "$" in number:
                     return "reset"
+
+            # terminating application after entering "#" hor number fields
+            def terminate_character_validate(number):
+                if number == "#":
+                    return "terminate"
             
             first_number = input("Enter first number: ")
             print(first_number)
+            if terminate_character_validate(first_number) == "terminate":
+                return -1
             if reset_character_validate(first_number) == "reset":
                 return 1
 
@@ -63,6 +70,8 @@ def select_op(choice):
                 # print(int(validated_first_number))
                 second_number = input("Enter second number: ")
                 print(second_number)
+                if terminate_character_validate(second_number) == "terminate":
+                    return -1
                 if reset_character_validate(second_number) == "reset":
                     return 1
 
